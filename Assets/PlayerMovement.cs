@@ -5,21 +5,30 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
 
 
+    public float forwardForce = -800f;
+    public float sidewaysForce = 500f;
+
+
+
     // Start is called before the first frame update
-    void Start() {
-
-
-        // rb.useGravity = false;
-
-     //   rb.AddForce(500, 200, 0);
-
-       //  Debug.Log("Hello, World!");
+    void Start() 
+    {
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(-2000 * Time.deltaTime, 0, 0);
+        rb.AddForce(forwardForce * Time.deltaTime, 0, 0);
+
+        if ( Input.GetKey ("d") )
+        {
+            rb.AddForce(0, 0, sidewaysForce * Time.deltaTime);
+        }
+
+        if ( Input.GetKey ("a") )
+        {
+            rb.AddForce(0, 0, -sidewaysForce * Time.deltaTime);
+        }
     }
 }
